@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<module xmlns="http://pluralsight.com/sapphire/module/2007/11">
+  <!--
+    The name of this file (not counting the ".meta" extension) must match the name of the
+    module folder this file resides in.
+  -->
+  
+  <author>john-doe</author>
+  <!-- Assigned author-id, not your name. -->
+  
+  <title>Introduction to the Foo Framework</title>
+  <!-- Module title displayed on the course web page and within the video players. -->
+  
+  <description>Brief customer facing description of module.</description>
+  
+  <clips>
+    <!--
+      The <clip> elements below indicate which video clips comprise the module, and the order in which
+      those clips should be displayed.
+      
+      The 'href' attribute specifies a single file name (no path - relative to this module).  To facilitate
+      reviews and production, clip file names should incorporate the module id and a sequential clip number:
+      
+        foo-fundmantals-m1-01.mp4
+        foo-fundmantals-m1-02.mp4
+        ...
+        foo-fundmantals-m1-04.mp4
+      
+      NOTE: For clip file names, use only lower case a-z, numbers 0-9, and the hyphen character.
+    -->
+    <clip href="foo-fundamentals-m1-01.mp4" title="Introduction" />
+    <clip href="foo-fundamentals-m1-02.mp4" title="API" />
+    <clip href="foo-fundamentals-m1-03.mp4" title="Configuration" />
+    <clip href="foo-fundamentals-m1-04.mp4" title="Security" />
+    <clip href="foo-fundamentals-m1-05.mp4" title="Testing" />
+    <clip href="foo-fundamentals-m1-06.mp4" title="Summary" />
+  </clips>
+</module>

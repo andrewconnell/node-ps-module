@@ -1,0 +1,11 @@
+module:
+  title: Introduction to the Foo Framework
+  description: >
+    Brief customer facing description of module.
+  clips:
+    - Introduction
+    - API
+    - Configuration
+    - Security
+    - Testing
+    - Summary

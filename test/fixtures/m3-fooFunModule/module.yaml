@@ -1,0 +1,11 @@
+module:
+  title: The Bar Plug-In
+  description: >
+    Brief customer facing description of module.
+  clips:
+    - Introduction
+    - API
+    - Configuration
+    - Security
+    - Testing
+    - Summary
