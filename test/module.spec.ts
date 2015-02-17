@@ -9,8 +9,7 @@ var os = require('os'),
     path = require('path'),
     rimraf = require('rimraf');
 var chai = require('chai'),
-    expect = chai.expect,
-    should = chai.should();
+    expect = chai.expect
 import Module = require('../lib/Module');
 import Utils = require('./../lib/Utils');
 
@@ -282,10 +281,26 @@ describe('Module', () => {
 
     beforeEach((done) => {
       courseModule = new Module();
+
+      // set valid values that will be overwritten in tests
+      courseModule.title = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
+      courseModule.clips.push('abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz');
+      courseModule.clips.push('abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz');
+
       done();
     });
 
-    it('will fail when the title is too long', (done) => {
+    it('will fail when there is no module title', (done) => {
+      courseModule.title = '';
+
+      var results = courseModule.validate();
+
+      expect(results.length).to.be.equal(1);
+
+      done();
+    });
+
+    it('will fail when the module title is too long', (done) => {
       courseModule.title = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
 
       var results = courseModule.validate();
@@ -295,7 +310,7 @@ describe('Module', () => {
       done();
     });
 
-    it('will pass when title is within parameters', (done) => {
+    it('will pass when module title is within parameters', (done) => {
       courseModule.title = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
 
       var results = courseModule.validate();
@@ -305,6 +320,35 @@ describe('Module', () => {
       done();
     });
 
+    it('will fail when there are no clips', (done) => {
+      courseModule.clips = [];
+
+      var results = courseModule.validate();
+
+      expect(results.length).to.be.equal(1);
+
+      done();
+    });
+
+    it('will pass when clip title is within parameters', (done) => {
+      courseModule.clips[0] = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
+
+      var results = courseModule.validate();
+
+      expect(results.length).to.be.equal(0);
+
+      done();
+    });
+
+    it('will fail when the clip title is too long', (done) => {
+      courseModule.clips[0] = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
+
+      var results = courseModule.validate();
+
+      expect(results.length).to.be.equal(1);
+
+      done();
+    });
   });
 
   describe('stageDemoFile()', () => {

@@ -314,14 +314,14 @@ class Module {
     var CLIP_TITLE_MAX_LENGTH = 65;
 
     // check module title
-    if (!self.title) {
+    if (!self.title || self.title === '') {
       results.push('Module title missing.');
     } else if (self.title.length > MODULE_TITLE_MAX_LENGTH) {
       results.push('Module title length (' + self.title.length + ') invalid. Must be less than ' + MODULE_TITLE_MAX_LENGTH);
     }
 
     // check clip titles
-    if (!self.clips) {
+    if (!self.clips || self.clips.length == 0) {
       results.push('Module clips missing.');
     } else {
       self.clips.forEach((clip, index) => {
