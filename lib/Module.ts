@@ -311,16 +311,31 @@ class Module {
 
     //TODO refactor hard coded value to config
     var MODULE_TITLE_MAX_LENGTH = 65;
+    var CLIP_TITLE_MAX_LENGTH = 65;
 
-    if (!self.title || self.title.length > MODULE_TITLE_MAX_LENGTH) {
+    // check module title
+    if (!self.title) {
+      results.push('Module title missing.');
+    } else if (self.title.length > MODULE_TITLE_MAX_LENGTH) {
       results.push('Module title length (' + self.title.length + ') invalid. Must be less than ' + MODULE_TITLE_MAX_LENGTH);
+    }
+
+    // check clip titles
+    if (!self.clips) {
+      results.push('Module clips missing.');
+    } else {
+      self.clips.forEach((clip, index) => {
+        if (clip.length > CLIP_TITLE_MAX_LENGTH) {
+          results.push('Clip #' + index + ' title length (' + clip.length + ') invalid. Must be less than ' + CLIP_TITLE_MAX_LENGTH);
+        }
+      });
     }
 
     return results;
   }
 
 
-  /////////     STATIC METHODS     ///////////////////////////////
+/////////     STATIC METHODS     ///////////////////////////////
 
 
   /**
@@ -331,7 +346,8 @@ class Module {
    * @param {string}     fullPath     Fully qualified path to the module folder.
    * @returns {Q.Promise<Module>}     Module object loaded from the YAML config file.
    */
-  static loadFromYaml(courseId:string, fullPath:string):Q.Promise<Module> {
+  static
+  loadFromYaml(courseId:string, fullPath:string):Q.Promise<Module> {
     var deferred = Q.defer();
 
 
@@ -382,7 +398,8 @@ class Module {
    * @param {string}    fullPath      Fully qualified path to the module META file.
    * @returns {Q.Promise<Module>}     Module object loaded from the META config file.
    */
-  static loadFromMeta(courseId:string, fullPath:string):Q.Promise<Module> {
+  static
+  loadFromMeta(courseId:string, fullPath:string):Q.Promise<Module> {
     var deferred = Q.defer();
 
     if (!fs.existsSync(fullPath)) {
