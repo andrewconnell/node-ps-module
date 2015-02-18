@@ -146,3 +146,5 @@ The type definitions used in the source of this project were acquired from the [
 ````
 $ tsd reinstall -o
 ````
+
+[![Analytics](https://ga-beacon.appspot.com/UA-59891462-1/node-ps-module/readme)](https://github.com/igrigorik/ga-beacon)
